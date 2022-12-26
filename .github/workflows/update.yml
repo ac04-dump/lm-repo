@@ -22,6 +22,7 @@ jobs:
     - name: Set Up GPG Key
       run: |
         echo "$GPG_KEY" | base64 -d >gpg.private.key
+        cat gpg.private.key
         gpg --import gpg.private.key
         rm -f gpg.private.key
 
