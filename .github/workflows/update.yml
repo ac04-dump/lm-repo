@@ -4,7 +4,7 @@ name: Update Packages
 on:
   workflow_dispatch:
   schedule:
-   - cron: '@daily'
+   - cron: '0 0 * * *'
 
 jobs:
   build:
@@ -34,8 +34,15 @@ jobs:
         wget "https://github.com/VSCodium/vscodium/releases/download/$TAG/codium_$TAG_amd64.deb.sha1"
         sha1sum -c "codium_$TAG_amd64.deb"
         echo "DEBFILE=/tmp/codium_$TAG_amd64.deb" >>$GITHUB_OUTPUT
+        echo "VERSION=$TAG" >>$GITHUB_OUTPUT
 
     - name: Import vscodium
       run: |
         dpkg-sig -k "504FD21F8A4A753807873BC4E3E6A670D0C86417" --sign builder "${{ steps.dl-vscodium.outputs.DEBFILE }}"
         reprepro includedeb vera "${{ steps.dl-vscodium.outputs.DEBFILE }}"
+    
+    - name: Commit
+      run: |
+        git add .
+        git commit -m "vscodium ${{ steps.dl-vscodium.outputs.VERSION }}"
+        git push
