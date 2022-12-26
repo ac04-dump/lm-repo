@@ -47,6 +47,7 @@ jobs:
 
     - name: Commit
       run: |
+        [ -z "$(git status -s)" ] && exit
         git config --global user.email "alexcoder04@protonmail.com"
         git config --global user.name "alexcoder04"
         git add .
@@ -112,6 +113,7 @@ jobs:
 
     - name: Commit
       run: |
+        [ -z "$(git status -s)" ] && exit
         git config --global user.email "alexcoder04@protonmail.com"
         git config --global user.name "alexcoder04"
         git add .
