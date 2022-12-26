@@ -36,7 +36,7 @@ jobs:
         cd /tmp
         wget "https://github.com/VSCodium/vscodium/releases/download/${{ steps.tag-vscodium.outputs.TAG }}/codium_${{ steps.tag-vscodium.outputs.TAG }}_amd64.deb"
         wget "https://github.com/VSCodium/vscodium/releases/download/${{ steps.tag-vscodium.outputs.TAG }}/codium_${{ steps.tag-vscodium.outputs.TAG }}_amd64.deb.sha1"
-        sha1sum -c "codium_${{ steps.tag-vscodium.outputs.TAG }}_amd64.deb"
+        [ "$(sha1sum "codium_${{ steps.tag-vscodium.outputs.TAG }}_amd64.deb" | cut -d " " -f1)" = "$(cut -d " " -f1 codium_${{ steps.tag-vscodium.outputs.TAG }}_amd64.deb.sha1)" ]
         echo "DEBFILE=/tmp/codium_${{ steps.tag-vscodium.outputs.TAG }}_amd64.deb" >>$GITHUB_OUTPUT
 
     - name: Import vscodium
