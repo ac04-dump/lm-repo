@@ -7,7 +7,7 @@ on:
    - cron: '0 0 * * *'
 
 jobs:
-  build:
+  codium:
     runs-on: ubuntu-latest
     
     steps:
@@ -41,8 +41,36 @@ jobs:
 
     - name: Import vscodium
       run: |
+        [ -f "pool/main/c/codium/$(basename ${{ steps.dl-vscodium.outputs.DEBFILE }})" ] && exit
         dpkg-sig -k "504FD21F8A4A753807873BC4E3E6A670D0C86417" --sign builder "${{ steps.dl-vscodium.outputs.DEBFILE }}"
         reprepro includedeb vera "${{ steps.dl-vscodium.outputs.DEBFILE }}"
+
+    - name: Commit
+      run: |
+        git config --global user.email "alexcoder04@protonmail.com"
+        git config --global user.name "alexcoder04"
+        git add .
+        git commit -m "vscodium ${{ steps.tag-vscodium.outputs.TAG }}"
+        git push
+
+
+  lf:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Install/Update Software
+      run: |
+        sudo apt update
+        sudo apt upgrade
+        sudo apt install reprepro dpkg-sig
+    
+    - name: Import GPG Key
+      run: |
+        echo "$GPG_KEY" | base64 --decode | gpg --import
+      env:
+        GPG_KEY: ${{ secrets.GPG_KEY }}
 
     - name: Find lf tag
       id: tag-lf
@@ -78,9 +106,9 @@ jobs:
 
     - name: Import lf
       run: |
+        [ -f "pool/main/l/lf/$(basename "${{ steps.dl-lf.outputs.DEBFILE }}")" ] && exit
         dpkg-sig -k "504FD21F8A4A753807873BC4E3E6A670D0C86417" --sign builder "${{ steps.dl-lf.outputs.DEBFILE }}"
         reprepro includedeb vera "${{ steps.dl-lf.outputs.DEBFILE }}"
-
 
     - name: Commit
       run: |
