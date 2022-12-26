@@ -22,3 +22,17 @@ Description: Code editing. Redefined.
  See https://vscodium.com/docs/setup/linux for installation
  instructions and FAQ.
 
+Package: lf
+Version: 28
+Architecture: amd64
+Essential: no
+Maintainer: alexcoder04
+Priority: optional
+Section: custom
+Filename: pool/main/l/lf/lf_28_amd64.deb
+Size: 1239128
+SHA256: 4eecd1cd6d1943b4b8716be8bdc2d4fe565229a63f1c3f9a77727260101fcd71
+SHA1: 8e6634edb770cff926c46aa84ac175e3a6103c7b
+MD5sum: 1781223af8c7aa6d428097dbb197c090
+Description: lf terminal file manager
+
