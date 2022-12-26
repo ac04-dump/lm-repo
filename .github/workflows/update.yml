@@ -46,6 +46,8 @@ jobs:
     
     - name: Commit
       run: |
+        git config --global user.email "alexcoder04@protonmail.com"
+        git config --global user.name "alexcoder04"
         git add .
         git commit -m "vscodium ${{ steps.tag-vscodium.outputs.TAG }}"
         git push
