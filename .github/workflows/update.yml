@@ -4,7 +4,11 @@ name: Update Packages
 on:
   workflow_dispatch:
   schedule:
-   - cron: '0 0 * * *'
+   - cron: '0 3 */2 * *'
+
+env:
+  GIT_USERNAME: ac04-dump
+  GIT_EMAIL: alexcoder04@protonmail.com
 
 jobs:
   codium:
@@ -13,17 +17,8 @@ jobs:
     steps:
     - uses: actions/checkout@v3
 
-    - name: Install/Update Software
-      run: |
-        sudo apt update
-        sudo apt upgrade
-        sudo apt install reprepro dpkg-sig
-    
-    - name: Import GPG Key
-      run: |
-        echo "$GPG_KEY" | base64 --decode | gpg --import
-      env:
-        GPG_KEY: ${{ secrets.GPG_KEY }}
+    - name: Setup
+      uses: ac04-dump/lm-repo/.github/workflows/setup.yml
 
     - name: Find vscodium Tag
       id: tag-vscodium
@@ -48,8 +43,8 @@ jobs:
     - name: Commit
       run: |
         [ -z "$(git status -s)" ] && exit
-        git config --global user.email "alexcoder04@protonmail.com"
-        git config --global user.name "alexcoder04"
+        git config --global user.email "$GIT_EMAIL"
+        git config --global user.name "$GIT_USERNAME"
         git add .
         git commit -m "vscodium ${{ steps.tag-vscodium.outputs.TAG }}"
         git push
@@ -114,8 +109,8 @@ jobs:
     - name: Commit
       run: |
         [ -z "$(git status -s)" ] && exit
-        git config --global user.email "alexcoder04@protonmail.com"
-        git config --global user.name "alexcoder04"
+        git config --global user.email "$GIT_EMAIL"
+        git config --global user.name "$GIT_USERNAME"
         git add .
-        git commit -m "vscodium ${{ steps.tag-vscodium.outputs.TAG }}"
+        git commit -m "lf ${{ steps.tag-lf.outputs.TAG }}"
         git push
