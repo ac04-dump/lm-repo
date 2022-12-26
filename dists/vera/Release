@@ -1,0 +1,37 @@
+Origin: raw.githubusercontent.com/ac04-dump/lm-repo/main
+Label: raw.githubusercontent.com/ac04-dump/lm-repo/main
+Codename: vera
+Date: Mon, 26 Dec 2022 21:42:10 UTC
+Architectures: i386 amd64
+Components: main
+Description: alexcoder04's LinuxMint repo
+MD5Sum:
+ d41d8cd98f00b204e9800998ecf8427e 0 main/binary-i386/Packages
+ 7029066c27ac6f5ef18d660d5741979a 20 main/binary-i386/Packages.gz
+ bc100ab1d2ad951ac687e52ff043f136 190 main/binary-i386/Release
+ 5f602aa7f008ec2939a03b62cccdf3fd 1742 main/binary-amd64/Packages
+ 04d97c7aea54c87c2c616a9ff98cf886 886 main/binary-amd64/Packages.gz
+ 156c85a0ceb92287abda930a3cadd531 191 main/binary-amd64/Release
+ d41d8cd98f00b204e9800998ecf8427e 0 main/source/Sources
+ 7029066c27ac6f5ef18d660d5741979a 20 main/source/Sources.gz
+ c0052811d624e286800788bb90893df6 192 main/source/Release
+SHA1:
+ da39a3ee5e6b4b0d3255bfef95601890afd80709 0 main/binary-i386/Packages
+ 46c6643f07aa7f6bfe7118de926b86defc5087c4 20 main/binary-i386/Packages.gz
+ e10113255c79f1e4e72cdb2a2e5517954a2799b2 190 main/binary-i386/Release
+ f7ad1509d9b018bd3276f8db0a71032b0789cdb9 1742 main/binary-amd64/Packages
+ 4b76e23498efe7e77272feec0e924bf2bbae2bc2 886 main/binary-amd64/Packages.gz
+ 875e03b64d6c1a480541f9a0637db69d61e6019d 191 main/binary-amd64/Release
+ da39a3ee5e6b4b0d3255bfef95601890afd80709 0 main/source/Sources
+ 46c6643f07aa7f6bfe7118de926b86defc5087c4 20 main/source/Sources.gz
+ 4984934db34884a88cc999d3fe2e350703b4d7c9 192 main/source/Release
+SHA256:
+ e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855 0 main/binary-i386/Packages
+ 59869db34853933b239f1e2219cf7d431da006aa919635478511fabbfc8849d2 20 main/binary-i386/Packages.gz
+ 97bba861c95a0fd99d8e4159a33cca8e7f25214571d7f7ee1a37bdb47e82e0c4 190 main/binary-i386/Release
+ 915688d3e25c115a71d3477f80e6f7d818a8ecb801b37411ec6c2fc9b31ffa6c 1742 main/binary-amd64/Packages
+ 915af990afc3e6cf32238bc38253b2cfdcaa125896816786d4d98dafcc7eea52 886 main/binary-amd64/Packages.gz
+ cadaff2099cd7febb6ac0915c4774ae10f6a5d6937f97b303e19c199a58806e7 191 main/binary-amd64/Release
+ e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855 0 main/source/Sources
+ 59869db34853933b239f1e2219cf7d431da006aa919635478511fabbfc8849d2 20 main/source/Sources.gz
+ a7a57971fe2e04bb0a43987f5229b4e7334e3f9cdb7f3de93da328fb54e5af1b 192 main/source/Release
