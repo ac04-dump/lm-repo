@@ -1,0 +1,8 @@
+
+Origin: raw.githubusercontent.com/ac04-dump/lm-repo/main
+Label: raw.githubusercontent.com/ac04-dump/lm-repo/main
+Codename: vera
+Architectures: i386 amd64 source
+Components: main
+Description: alexcoder04's LinuxMint repo
+SignWith: 504FD21F8A4A753807873BC4E3E6A670D0C86417

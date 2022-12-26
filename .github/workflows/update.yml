@@ -1,0 +1,41 @@
+
+name: Update Packages
+
+on:
+  workflow_dispatch:
+  schedule:
+   - cron: '@daily'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Install/Update Software
+      run: |
+        sudo apt update
+        sudo apt upgrade
+        sudo apt install reprepro dpkg-sig
+    
+    - name: Set Up GPG Key
+      run: |
+        echo "$GPG_KEY" | base64 -d >gpg.private.key
+        gpg --import gpg.private.key
+        rm -f gpg.private.key
+
+    - name: Download vscodium
+      id: dl-vscodium
+      run: |
+        cd /tmp
+        TAG="$(curl https://api.github.com/repos/vscodium/vscodium/releases/latest 2>/dev/null | jq -r ".tag_name")"
+        wget "https://github.com/VSCodium/vscodium/releases/download/$TAG/codium_$TAG_amd64.deb"
+        wget "https://github.com/VSCodium/vscodium/releases/download/$TAG/codium_$TAG_amd64.deb.sha1"
+        sha1sum -c "codium_$TAG_amd64.deb"
+        echo "DEBFILE=/tmp/codium_$TAG_amd64.deb" >>$GITHUB_OUTPUT
+
+    - name: Import vscodium
+      run: |
+        dpkg-sig -k "504FD21F8A4A753807873BC4E3E6A670D0C86417" --sign builder "${{ steps.dl-vscodium.outputs.DEBFILE }}"
+        reprepro includedeb vera "${{ steps.dl-vscodium.outputs.DEBFILE }}"
