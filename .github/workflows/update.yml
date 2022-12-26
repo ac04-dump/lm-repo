@@ -25,16 +25,19 @@ jobs:
       env:
         GPG_KEY: ${{ secrets.GPG_KEY }}
 
+    - name: Find vscodium Tag
+      id: tag-vscodium
+      run: |
+        echo "TAG=$(curl https://api.github.com/repos/vscodium/vscodium/releases/latest 2>/dev/null | jq -r ".tag_name")" >>$GITHUB_OUTPUT
+
     - name: Download vscodium
       id: dl-vscodium
       run: |
         cd /tmp
-        TAG="$(curl https://api.github.com/repos/vscodium/vscodium/releases/latest 2>/dev/null | jq -r ".tag_name")"
-        wget "https://github.com/VSCodium/vscodium/releases/download/$TAG/codium_$TAG_amd64.deb"
-        wget "https://github.com/VSCodium/vscodium/releases/download/$TAG/codium_$TAG_amd64.deb.sha1"
-        sha1sum -c "codium_$TAG_amd64.deb"
-        echo "DEBFILE=/tmp/codium_$TAG_amd64.deb" >>$GITHUB_OUTPUT
-        echo "VERSION=$TAG" >>$GITHUB_OUTPUT
+        wget "https://github.com/VSCodium/vscodium/releases/download/${{ steps.tag-vscodium.outputs.TAG }}/codium_$TAG_amd64.deb"
+        wget "https://github.com/VSCodium/vscodium/releases/download/${{ steps.tag-vscodium.outputs.TAG }}/codium_$TAG_amd64.deb.sha1"
+        sha1sum -c "codium_${{ steps.tag-vscodium.outputs.TAG }}_amd64.deb"
+        echo "DEBFILE=/tmp/codium_${{ steps.tag-vscodium.outputs.TAG }}_amd64.deb" >>$GITHUB_OUTPUT
 
     - name: Import vscodium
       run: |
@@ -44,5 +47,5 @@ jobs:
     - name: Commit
       run: |
         git add .
-        git commit -m "vscodium ${{ steps.dl-vscodium.outputs.VERSION }}"
+        git commit -m "vscodium ${{ steps.tag-vscodium.outputs.TAG }}"
         git push
