@@ -111,7 +111,7 @@ jobs:
 
     - name: Import lf
       run: |
-        [ -f "pool/main/l/lf/$(basename "${{ steps.dl-lf.outputs.DEBFILE }}")" ] && exit
+        [ -f "pool/main/l/lf/lf_$(echo "${{ steps.tag-lf.outputs.TAG }}" | tr -d "r")_amd64.deb" ] && exit
         dpkg-sig -k "504FD21F8A4A753807873BC4E3E6A670D0C86417" --sign builder "${{ steps.dl-lf.outputs.DEBFILE }}"
         reprepro includedeb vera "${{ steps.dl-lf.outputs.DEBFILE }}"
 
