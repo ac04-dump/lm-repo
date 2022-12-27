@@ -2,6 +2,11 @@
 name: "Prepare Environment"
 description: "Installs/Updates necessary software and imports GPG key"
 
+inputs:
+  GPG_KEY:
+    required: true
+    description: "base64 of GPG key to import"
+
 runs:
   using: "composite"
 
@@ -19,5 +24,5 @@ runs:
     run: |
       echo "$GPG_KEY" | base64 --decode | gpg --import
     env:
-      GPG_KEY: ${{ secrets.GPG_KEY }}
+      GPG_KEY: ${{ inputs.GPG_KEY }}
 
