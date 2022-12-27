@@ -1,0 +1,23 @@
+
+name: "Prepare Environment"
+description: "Installs/Updates necessary software and imports GPG key"
+
+runs:
+  using: "composite"
+
+  steps:
+  
+  - name: Install/Update Software
+    shell: bash
+    run: |
+      sudo apt update
+      sudo apt upgrade
+      sudo apt install reprepro dpkg-sig
+    
+  - name: Import GPG Key
+    shell: bash
+    run: |
+      echo "$GPG_KEY" | base64 --decode | gpg --import
+    env:
+      GPG_KEY: ${{ secrets.GPG_KEY }}
+

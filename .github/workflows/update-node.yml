@@ -17,17 +17,7 @@ jobs:
     steps:
     - uses: actions/checkout@v3
 
-    - name: Install/Update Software
-      run: |
-        sudo apt update
-        sudo apt upgrade
-        sudo apt install reprepro dpkg-sig
-    
-    - name: Import GPG Key
-      run: |
-        echo "$GPG_KEY" | base64 --decode | gpg --import
-      env:
-        GPG_KEY: ${{ secrets.GPG_KEY }}
+    - uses: ./.github/workflows/prepare
 
     - name: Find Tag
       id: tag
