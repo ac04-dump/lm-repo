@@ -15,7 +15,7 @@ runs:
   - name: Install/Update Software
     shell: bash
     run: |
-      sudo snap remove firefox
+      sudo apt remove dotnet-sdk-6.0 dotnet-sdk-7.0 firefox
       sudo apt update
       sudo apt upgrade
       sudo apt install reprepro dpkg-sig
