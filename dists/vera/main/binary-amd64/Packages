@@ -36,3 +36,19 @@ SHA1: 8e6634edb770cff926c46aa84ac175e3a6103c7b
 MD5sum: 1781223af8c7aa6d428097dbb197c090
 Description: lf terminal file manager
 
+Package: nodejs-alexcoder04
+Version: 19.3.0
+Architecture: amd64
+Essential: no
+Replaces: nodejs
+Conflicts: nodejs
+Maintainer: alexcoder04
+Priority: optional
+Section: custom
+Filename: pool/main/n/nodejs-alexcoder04/nodejs-alexcoder04_19.3.0_amd64.deb
+Size: 27070528
+SHA256: 2cba16f4e190a82b128f1f61acad36c2091550759631de7a12c9e85aaf526977
+SHA1: 9e46abede2e06b7be772ff8b941383bfb444ea92
+MD5sum: f169c4421d478ba146b64921c9d5a1e9
+Description: latest version of nodejs by alexcoder04
+
