@@ -67,3 +67,12 @@ jobs:
         dpkg-sig -k "504FD21F8A4A753807873BC4E3E6A670D0C86417" --sign builder "${{ steps.download.outputs.DEBFILE }}"
         reprepro includedeb vera "${{ steps.download.outputs.DEBFILE }}"
 
+    - name: Commit
+      run: |
+        [ -z "$(git status -s)" ] && exit
+        git config --global user.email "$GIT_EMAIL"
+        git config --global user.name "$GIT_USERNAME"
+        git add .
+        git commit -m "nodejs ${{ steps.tag.outputs.TAG }}"
+        git push
+
