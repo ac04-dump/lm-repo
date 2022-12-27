@@ -6,10 +6,6 @@ on:
   schedule:
    - cron: '0 3 */10 * *'
 
-env:
-  GIT_USERNAME: ac04-dump
-  GIT_EMAIL: alexcoder04@protonmail.com
-
 jobs:
   update:
     runs-on: ubuntu-latest
@@ -17,35 +13,28 @@ jobs:
     steps:
     - uses: actions/checkout@v3
 
-    - name: Install/Update Software
-      run: |
-        sudo apt update
-        sudo apt upgrade
-        sudo apt install reprepro dpkg-sig
-    
-    - name: Import GPG Key
-      run: |
-        echo "$GPG_KEY" | base64 --decode | gpg --import
-      env:
+    - uses: ./.github/actions/prepare
+      with:
         GPG_KEY: ${{ secrets.GPG_KEY }}
 
     - name: Find lf tag
-      id: tag-lf
+      id: tag
       run: |
         echo "TAG=$(curl https://api.github.com/repos/gokcehan/lf/releases/latest 2>/dev/null | jq -r ".tag_name")" >>$GITHUB_OUTPUT
 
     - name: Download lf
-      id: dl-lf
+      id: download
       run: |
         mkdir -vp /tmp/lf
         cd /tmp/lf
-        wget "https://github.com/gokcehan/lf/releases/download/${{ steps.tag-lf.outputs.TAG }}/lf-linux-amd64.tar.gz"
+        wget "https://github.com/gokcehan/lf/releases/download/${{ steps.tag.outputs.TAG }}/lf-linux-amd64.tar.gz"
         tar xf "lf-linux-amd64.tar.gz"
         rm -vf "lf-linux-amd64.tar.gz"
+        
         mkdir -vp DEBIAN
         cat >DEBIAN/control <<EOF
         Package: lf
-        Version: $(echo "${{ steps.tag-lf.outputs.TAG }}" | tr -d "r")
+        Version: $(echo "${{ steps.tag.outputs.TAG }}" | tr -d "r")
         Section: custom
         Priority: optional
         Architecture: amd64
@@ -59,20 +48,13 @@ jobs:
         chmod 755 DEBIAN
         cd ..
         dpkg-deb --build lf
-        echo "DEBFILE=/tmp/lf.deb" >>$GITHUB_OUTPUT
+        mv "lf.deb" "lf_${{ steps.tag.outputs.TAG }}_amd64.deb"
+        echo "DEBFILE=/tmp/lf_${{ steps.tag.outputs.TAG }}_amd64.deb" >>$GITHUB_OUTPUT
 
-    - name: Import lf
-      run: |
-        [ -f "pool/main/l/lf/lf_$(echo "${{ steps.tag-lf.outputs.TAG }}" | tr -d "r")_amd64.deb" ] && exit
-        dpkg-sig -k "504FD21F8A4A753807873BC4E3E6A670D0C86417" --sign builder "${{ steps.dl-lf.outputs.DEBFILE }}"
-        reprepro includedeb vera "${{ steps.dl-lf.outputs.DEBFILE }}"
-
-    - name: Commit
-      run: |
-        [ -z "$(git status -s)" ] && exit
-        git config --global user.email "$GIT_EMAIL"
-        git config --global user.name "$GIT_USERNAME"
-        git add .
-        git commit -m "lf ${{ steps.tag-lf.outputs.TAG }}"
-        git push
+    - uses: ./.github/actions/commit
+      with:
+        FILE: "${{ steps.download.outputs.DEBFILE }}"
+        GIT_EMAIL: ac04-dump@users.noreply.github.com
+        GIT_NAME: ac04-dump
+        MESSAGE: "lf ${{ steps.tag.outputs.TAG }}"
 

@@ -1,0 +1,38 @@
+
+name: "Import and Commit Changes"
+description: "Imports, Commits and Pushes Changes"
+
+inputs:
+  GIT_EMAIL:
+    required: true
+    description: "Email to use for git"
+  GIT_NAME:
+    required: true
+    description: "Name to use for git"
+  MESSAGE:
+    required: true
+    description: "Message to use for git commit"
+  FILE:
+    required: true
+    description: ".deb file to import"
+
+runs:
+  using: "composite"
+
+  steps:
+
+  - name: Import
+    run: |
+      [ -f "pool/main/c/$(echo "${{ inputs.FILE }}" | cut -d "_" -f1)/$(basename ${{ inputs.FILE }})" ] && exit
+      dpkg-sig -k "504FD21F8A4A753807873BC4E3E6A670D0C86417" --sign builder "${{ inputs.FILE }}"
+      reprepro includedeb vera "${{ inputs.FILE }}"
+
+  - name: Commit and Push
+    run: |
+      [ -z "$(git status -s)" ] && exit
+      git config --global user.email "${{ inputs.GIT_EMAIL }}"
+      git config --global user.name "${{ inputs.GIT_USERNAME }}"
+      git add .
+      git commit -m "${{ inputs.MESSAGE }}"
+      git push
+
