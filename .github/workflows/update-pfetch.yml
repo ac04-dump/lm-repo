@@ -1,0 +1,52 @@
+
+name: Update Pfetch
+
+on:
+  workflow_dispatch:
+  schedule:
+   - cron: '0 3 1 * *'
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v3
+
+    - uses: ./.github/actions/prepare
+      with:
+        GPG_KEY: ${{ secrets.GPG_KEY }}
+
+    - name: Download and Build
+      id: download
+      run: |
+        cd /tmp
+        git clone https://github.com/dylanaraps/pfetch.git code
+        mkdir -vp pfetch/usr/bin
+
+        install -Dm755 code/pfetch pfetch/usr/bin/pfetch
+
+        mkdir -vp DEBIAN
+        cat >DEBIAN/control <<EOF
+        Package: pfetch
+        Version: $(date +%Y%m%d)
+        Section: custom
+        Priority: optional
+        Architecture: amd64
+        Essential: no
+        Maintainer: alexcoder04
+        Description: system fetch tool written in posix shell
+        EOF
+        chmod 755 DEBIAN
+        cd ..
+        dpkg-deb --build pfetch
+        mv pfetch.deb "pfetch_$(date +%Y%m%d)_amd64.deb"
+        echo "DEBFILE=/tmp/pfetch_$(date +%Y%m%d)_amd64.deb" >>$GITHUB_OUTPUT
+
+    - uses: ./.github/actions/commit
+      with:
+        FILE: "${{ steps.download.outputs.DEBFILE }}"
+        GIT_EMAIL: ac04-dump@users.noreply.github.com
+        GIT_NAME: ac04-dump
+        MESSAGE: "nodejs ${{ steps.tag.outputs.TAG }}"
+
