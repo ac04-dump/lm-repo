@@ -26,8 +26,8 @@ jobs:
 
         install -Dm755 code/pfetch pfetch/usr/bin/pfetch
 
-        mkdir -vp DEBIAN
-        cat >DEBIAN/control <<EOF
+        mkdir -vp pfetch/DEBIAN
+        cat >pfetch/DEBIAN/control <<EOF
         Package: pfetch
         Version: $(date +%Y%m%d)
         Section: custom

@@ -15,6 +15,7 @@ runs:
   - name: Install/Update Software
     shell: bash
     run: |
+      sudo snap remove firefox
       sudo apt update
       sudo apt upgrade
       sudo apt install reprepro dpkg-sig
