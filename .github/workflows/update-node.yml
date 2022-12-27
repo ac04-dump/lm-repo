@@ -48,7 +48,7 @@ jobs:
         mv -v bin include lib share usr/
         mv -v CHANGELOG.md usr/share/doc/node/CHANGELOG.md
         mv -v README.md usr/share/doc/node/README.md
-        mkdir -vp usr/share/liceses/node
+        mkdir -vp usr/share/licenses/node
         mv -v LICENSE usr/share/licenses/node/LICENSE
 
         mkdir -vp DEBIAN
