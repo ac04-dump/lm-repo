@@ -38,7 +38,6 @@ jobs:
         Description: system fetch tool written in posix shell
         EOF
         chmod 755 pfetch/DEBIAN
-        cd ..
         dpkg-deb --build pfetch
         mv pfetch.deb "pfetch_$(date +%Y%m%d)_amd64.deb"
         echo "DEBFILE=/tmp/pfetch_$(date +%Y%m%d)_amd64.deb" >>$GITHUB_OUTPUT

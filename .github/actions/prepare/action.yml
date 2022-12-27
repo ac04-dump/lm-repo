@@ -11,11 +11,12 @@ runs:
   using: "composite"
 
   steps:
-  
+
+  # we delete some packages before, as we dont need them, but they need to long to update
   - name: Install/Update Software
     shell: bash
     run: |
-      sudo apt remove dotnet-sdk-6.0 dotnet-sdk-7.0 firefox
+      sudo apt remove dotnet-sdk-6.0 dotnet-sdk-7.0 firefox dotnet-runtime-6.0 dotnet-runtime-7.0
       sudo apt update
       sudo apt upgrade
       sudo apt install reprepro dpkg-sig
