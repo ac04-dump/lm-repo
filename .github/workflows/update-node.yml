@@ -1,5 +1,5 @@
 
-name: Update Packages
+name: Update Node
 
 on:
   workflow_dispatch:
@@ -11,7 +11,7 @@ env:
   GIT_EMAIL: alexcoder04@protonmail.com
 
 jobs:
-  codium:
+  update:
     runs-on: ubuntu-latest
     
     steps:
