@@ -47,5 +47,5 @@ jobs:
         FILE: "${{ steps.download.outputs.DEBFILE }}"
         GIT_EMAIL: ac04-dump@users.noreply.github.com
         GIT_NAME: ac04-dump
-        MESSAGE: "nodejs ${{ steps.tag.outputs.TAG }}"
+        MESSAGE: "pfetch"
 
