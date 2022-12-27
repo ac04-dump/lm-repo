@@ -1,0 +1,76 @@
+
+name: Update Packages
+
+on:
+  workflow_dispatch:
+  schedule:
+   - cron: '0 3 */7 * *'
+
+env:
+  GIT_USERNAME: ac04-dump
+  GIT_EMAIL: alexcoder04@protonmail.com
+
+jobs:
+  codium:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Install/Update Software
+      run: |
+        sudo apt update
+        sudo apt upgrade
+        sudo apt install reprepro dpkg-sig
+    
+    - name: Import GPG Key
+      run: |
+        echo "$GPG_KEY" | base64 --decode | gpg --import
+      env:
+        GPG_KEY: ${{ secrets.GPG_KEY }}
+
+    - name: Find Tag
+      id: tag
+      run: |
+        echo "TAG=$(curl https://api.github.com/repos/nodejs/node/releases/latest 2>/dev/null | jq -r ".tag_name")" >>$GITHUB_OUTPUT
+
+    - name: Download and Build
+      id: download
+      run: |
+        cd /tmp
+        wget -O "node.tar.xz" "https://nodejs.org/dist/${{ steps.tag.outputs.TAG }}/node-${{ steps.tag.outputs.TAG }}-linux-x64.tar.xz"
+        tar xf "node.tar.xz"
+        rm -vf "node.tar.xz"
+
+        mv "node-${{ steps.tag.outputs.TAG }}-linux-x64" nodejs-alexcoder04
+        cd nodejs-alexcoder04
+        mkdir -vp usr/share/licenses/node
+        mv -v bin include lib share usr/
+        mv -v CHANGELOG.md usr/share/doc/node/CHANGELOG.md
+        mv -v README.md usr/share/doc/node/README.md
+        mv -v LICENSE usr/share/licenses/node/LICENSE
+
+        mkdir -vp DEBIAN
+        cat >DEBIAN/control <<EOF
+        Package: nodejs-alexcoder04
+        Version: $(echo "${{ steps.tag.outputs.TAG }}" | tr -d "v")
+        Section: custom
+        Priority: optional
+        Architecture: amd64
+        Essential: no
+        Replaces: nodejs
+        Conflicts: nodejs
+        Maintainer: alexcoder04
+        Description: latest version of nodejs by alexcoder04
+        EOF
+        chmod 755 DEBIAN
+        cd ..
+        dpkg-deb --build nodejs-alexcoder04
+        echo "DEBFILE=/tmp/nodejs-alexcoder04.deb" >>$GITHUB_OUTPUT
+
+    - name: Import
+      run: |
+        [ -f "pool/main/n/nodejs-alexcoder04/nodejs-alexcoder04_$(echo "${{ steps.tag-lf.outputs.TAG }}" | tr -d "v")_amd64.deb" ] && exit
+        dpkg-sig -k "504FD21F8A4A753807873BC4E3E6A670D0C86417" --sign builder "${{ steps.download.outputs.DEBFILE }}"
+        reprepro includedeb vera "${{ steps.download.outputs.DEBFILE }}"
+
