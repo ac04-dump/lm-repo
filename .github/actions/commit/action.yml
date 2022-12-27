@@ -33,7 +33,7 @@ runs:
     run: |
       [ -z "$(git status -s)" ] && exit
       git config --global user.email "${{ inputs.GIT_EMAIL }}"
-      git config --global user.name "${{ inputs.GIT_USERNAME }}"
+      git config --global user.name "${{ inputs.GIT_NAME }}"
       git add .
       git commit -m "${{ inputs.MESSAGE }}"
       git push
