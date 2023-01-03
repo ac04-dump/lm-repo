@@ -24,7 +24,7 @@ runs:
   - name: Import
     shell: bash
     run: |
-      [ -f "pool/main/c/$(echo "${{ inputs.FILE }}" | cut -d "_" -f1)/$(basename ${{ inputs.FILE }})" ] && exit
+      [ -f "pool/main/c/$(basename "${{ inputs.FILE }}" | cut -d "_" -f1)/$(basename ${{ inputs.FILE }})" ] && exit
       dpkg-sig -k "504FD21F8A4A753807873BC4E3E6A670D0C86417" --sign builder "${{ inputs.FILE }}"
       reprepro includedeb vera "${{ inputs.FILE }}"
 
