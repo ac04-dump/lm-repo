@@ -47,8 +47,8 @@ jobs:
         Priority: optional
         Architecture: amd64
         Essential: no
-        Replaces: nodejs libnode-dev
-        Conflicts: nodejs libnode-dev
+        Replaces: nodejs, libnode-dev
+        Conflicts: nodejs, libnode-dev
         Maintainer: alexcoder04
         Description: latest version of nodejs by alexcoder04
         EOF
