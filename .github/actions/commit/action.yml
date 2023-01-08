@@ -20,6 +20,10 @@ runs:
   using: "composite"
 
   steps:
+  - name: Update
+    shell: bash
+    run: |
+      git pull --rebase
 
   - name: Import
     shell: bash
