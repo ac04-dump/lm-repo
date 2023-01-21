@@ -8,7 +8,7 @@ My custom Linux Mint repo for packages that are not in the default one.
  - VSCodium (de-microsofted vscode, as a native deb package) / updated every week
  - pfetch (lightweight neofetch in posix sh) / updated every month
  - latest NodeJS / updated every week
- - LF (terminal file manager) / updated every ten days
+ - LF (terminal file manager) / updated every month
 
 ## How to use
 
