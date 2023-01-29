@@ -37,7 +37,7 @@ MD5sum: 1781223af8c7aa6d428097dbb197c090
 Description: lf terminal file manager
 
 Package: nodejs-alexcoder04
-Version: 19.4.0
+Version: 19.5.0
 Architecture: amd64
 Essential: no
 Replaces: nodejs, libnode-dev
@@ -45,11 +45,11 @@ Conflicts: nodejs, libnode-dev
 Maintainer: alexcoder04
 Priority: optional
 Section: custom
-Filename: pool/main/n/nodejs-alexcoder04/nodejs-alexcoder04_19.4.0_amd64.deb
-Size: 27216816
-SHA256: f8f8262792832457b380f9e82a2c5e9cbc3e2c176e8e5133b5a60be6fae4a149
-SHA1: 20e45a27026f81ad3181aab96f22947f20e9a05c
-MD5sum: 08819141b357724f4030064b313ec72c
+Filename: pool/main/n/nodejs-alexcoder04/nodejs-alexcoder04_19.5.0_amd64.deb
+Size: 27234128
+SHA256: 7bba1280dc37a6fc130420acd9235b144cfe313a8d20ca8e9d02eb542029f0e1
+SHA1: 73e0912d33c74fe505032e6e088db0e381f05b57
+MD5sum: 3e3ea62323389865d1d469bfaed6bd6f
 Description: latest version of nodejs by alexcoder04
 
 Package: pfetch
