@@ -53,16 +53,16 @@ MD5sum: 3e3ea62323389865d1d469bfaed6bd6f
 Description: latest version of nodejs by alexcoder04
 
 Package: pfetch
-Version: 20230101
+Version: 20230201
 Architecture: amd64
 Essential: no
 Maintainer: alexcoder04
 Priority: optional
 Section: custom
-Filename: pool/main/p/pfetch/pfetch_20230101_amd64.deb
-Size: 18006
-SHA256: 8b9944c3029b4e85bad811d4a490ecb4106ea162635f162544046f9c87710c51
-SHA1: 73ecd19d8207e1f53e225a54819a93e20ce3ba01
-MD5sum: 0aa483e6a08b644c80ea816831bf7b7e
+Filename: pool/main/p/pfetch/pfetch_20230201_amd64.deb
+Size: 18004
+SHA256: 199c0f7d851cbf71978f97c3488cb939590f7ab87c560293df86bc0c7fdc366d
+SHA1: 2b849d8309af6afe90c329f0e4f5aaea5d532838
+MD5sum: 5eb2c4fe1231b7585c8396ad12318162
 Description: system fetch tool written in posix shell
 
