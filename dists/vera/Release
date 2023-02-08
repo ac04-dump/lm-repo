@@ -1,7 +1,7 @@
 Origin: raw.githubusercontent.com/ac04-dump/lm-repo/main
 Label: raw.githubusercontent.com/ac04-dump/lm-repo/main
 Codename: vera
-Date: Wed, 01 Feb 2023 03:40:32 UTC
+Date: Wed, 08 Feb 2023 03:20:50 UTC
 Architectures: i386 amd64
 Components: main
 Description: alexcoder04's LinuxMint repo
@@ -9,8 +9,8 @@ MD5Sum:
  d41d8cd98f00b204e9800998ecf8427e 0 main/binary-i386/Packages
  7029066c27ac6f5ef18d660d5741979a 20 main/binary-i386/Packages.gz
  bc100ab1d2ad951ac687e52ff043f136 190 main/binary-i386/Release
- e8946d735e857b3dd8ca6edd7bd4ee44 3029 main/binary-amd64/Packages
- ded1b48c5ff3fb59cbca5d27981c03d7 1384 main/binary-amd64/Packages.gz
+ 268fb1a7329a681fd5851eb0854eed67 3029 main/binary-amd64/Packages
+ 2ebdd010e1f64b7738d8093f7204cc22 1387 main/binary-amd64/Packages.gz
  156c85a0ceb92287abda930a3cadd531 191 main/binary-amd64/Release
  d41d8cd98f00b204e9800998ecf8427e 0 main/source/Sources
  7029066c27ac6f5ef18d660d5741979a 20 main/source/Sources.gz
@@ -19,8 +19,8 @@ SHA1:
  da39a3ee5e6b4b0d3255bfef95601890afd80709 0 main/binary-i386/Packages
  46c6643f07aa7f6bfe7118de926b86defc5087c4 20 main/binary-i386/Packages.gz
  e10113255c79f1e4e72cdb2a2e5517954a2799b2 190 main/binary-i386/Release
- bf0a11c91e67c32494b43756c2e4fd585ea94649 3029 main/binary-amd64/Packages
- 963a383756167f150679461c1417e28883093059 1384 main/binary-amd64/Packages.gz
+ c87543ac2fbe81398ab9937fae6de6fc7bb920b3 3029 main/binary-amd64/Packages
+ 9d229cfd3f29e59e854b22e221a4b5dcf8839395 1387 main/binary-amd64/Packages.gz
  875e03b64d6c1a480541f9a0637db69d61e6019d 191 main/binary-amd64/Release
  da39a3ee5e6b4b0d3255bfef95601890afd80709 0 main/source/Sources
  46c6643f07aa7f6bfe7118de926b86defc5087c4 20 main/source/Sources.gz
@@ -29,8 +29,8 @@ SHA256:
  e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855 0 main/binary-i386/Packages
  59869db34853933b239f1e2219cf7d431da006aa919635478511fabbfc8849d2 20 main/binary-i386/Packages.gz
  97bba861c95a0fd99d8e4159a33cca8e7f25214571d7f7ee1a37bdb47e82e0c4 190 main/binary-i386/Release
- ff24c972c3215564b080b9e26a1dfa2e7848c17170145e30aeafcff72813695f 3029 main/binary-amd64/Packages
- 97296d9996b7ab4a7497aaaeb1dfe321dfbfbc0d238fbda5b9e1ff0321c16ec4 1384 main/binary-amd64/Packages.gz
+ 82728ddd52fa08a1e85c9723d63b7ef146da0ef7290537b60d5a44892bc9669e 3029 main/binary-amd64/Packages
+ 8bdf87d04f0f7398aae2650bc2ca3ae3407b20ee9ac8f3f77ea290ee2aecc07d 1387 main/binary-amd64/Packages.gz
  cadaff2099cd7febb6ac0915c4774ae10f6a5d6937f97b303e19c199a58806e7 191 main/binary-amd64/Release
  e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855 0 main/source/Sources
  59869db34853933b239f1e2219cf7d431da006aa919635478511fabbfc8849d2 20 main/source/Sources.gz
