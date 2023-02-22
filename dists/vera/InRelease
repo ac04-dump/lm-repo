@@ -4,7 +4,7 @@ Hash: SHA512
 Origin: raw.githubusercontent.com/ac04-dump/lm-repo/main
 Label: raw.githubusercontent.com/ac04-dump/lm-repo/main
 Codename: vera
-Date: Wed, 08 Feb 2023 03:22:09 UTC
+Date: Wed, 22 Feb 2023 03:21:10 UTC
 Architectures: i386 amd64
 Components: main
 Description: alexcoder04's LinuxMint repo
@@ -12,8 +12,8 @@ MD5Sum:
  d41d8cd98f00b204e9800998ecf8427e 0 main/binary-i386/Packages
  7029066c27ac6f5ef18d660d5741979a 20 main/binary-i386/Packages.gz
  bc100ab1d2ad951ac687e52ff043f136 190 main/binary-i386/Release
- 24f648d9e3def68087652776d517a680 2994 main/binary-amd64/Packages
- 4972bfe658a72d9dc2eda8952af9d68a 1381 main/binary-amd64/Packages.gz
+ 070f785c7ee98ea679b8e119263ec759 2994 main/binary-amd64/Packages
+ 4fc41a82181749ea8c1bba6673af1d1f 1381 main/binary-amd64/Packages.gz
  156c85a0ceb92287abda930a3cadd531 191 main/binary-amd64/Release
  d41d8cd98f00b204e9800998ecf8427e 0 main/source/Sources
  7029066c27ac6f5ef18d660d5741979a 20 main/source/Sources.gz
@@ -22,8 +22,8 @@ SHA1:
  da39a3ee5e6b4b0d3255bfef95601890afd80709 0 main/binary-i386/Packages
  46c6643f07aa7f6bfe7118de926b86defc5087c4 20 main/binary-i386/Packages.gz
  e10113255c79f1e4e72cdb2a2e5517954a2799b2 190 main/binary-i386/Release
- 5f94a928787a6dc981e9373a6317e2cbdbb904a9 2994 main/binary-amd64/Packages
- 7ee8696af3f0f63368a84f460002db5caff35250 1381 main/binary-amd64/Packages.gz
+ 3b2a0342fd1d71f713485ccc9b39864fa9b22b60 2994 main/binary-amd64/Packages
+ 2a7e7dcaba08d820ae4cbb8d878ece5161ed8466 1381 main/binary-amd64/Packages.gz
  875e03b64d6c1a480541f9a0637db69d61e6019d 191 main/binary-amd64/Release
  da39a3ee5e6b4b0d3255bfef95601890afd80709 0 main/source/Sources
  46c6643f07aa7f6bfe7118de926b86defc5087c4 20 main/source/Sources.gz
@@ -32,25 +32,25 @@ SHA256:
  e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855 0 main/binary-i386/Packages
  59869db34853933b239f1e2219cf7d431da006aa919635478511fabbfc8849d2 20 main/binary-i386/Packages.gz
  97bba861c95a0fd99d8e4159a33cca8e7f25214571d7f7ee1a37bdb47e82e0c4 190 main/binary-i386/Release
- fdccb94af94b2c778a7c66f2a6cd66298727d5327211818f29d8dfd9c80b4b9b 2994 main/binary-amd64/Packages
- 43016555f1e92a8d183f01820c276e88b88d6c0bf4e518013572294c91f01dcf 1381 main/binary-amd64/Packages.gz
+ 940fce07173a4e790318a91e61d47e316a1b4572eb46f69b3ed68448c328d08b 2994 main/binary-amd64/Packages
+ 076f6047ec1b39cfcf93e6aedf54d205ceb6704d3fb8f6c4f77b16bceb0a4585 1381 main/binary-amd64/Packages.gz
  cadaff2099cd7febb6ac0915c4774ae10f6a5d6937f97b303e19c199a58806e7 191 main/binary-amd64/Release
  e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855 0 main/source/Sources
  59869db34853933b239f1e2219cf7d431da006aa919635478511fabbfc8849d2 20 main/source/Sources.gz
  a7a57971fe2e04bb0a43987f5229b4e7334e3f9cdb7f3de93da328fb54e5af1b 192 main/source/Release
 -----BEGIN PGP SIGNATURE-----
 
-iQIzBAEBCgAdFiEEUE/SH4pKdTgHhzvE4+amcNDIZBcFAmPjFWEACgkQ4+amcNDI
-ZBeCzA/+IQWdvoW1BXKv6/szZi738qRVjJytpsMNOexsIMUTQdd8C64YMIILwKJg
-qpKB1GwPcp8CD6HQ0VES0johFesiTV5D9SkwIRRHcbBCU+tYLPcJrYlgtaegmHZf
-X3sXcJlfNBWJG+wTOqDsVYhop4Q5vxe+2AaB64T5XOUI8KVByENlFyaF8QpoJv//
-PgvB5iYj0vN9beYTnEitgAfyURbbCtPI1G+4KoekCRMH8cFlSx03peRlEk2Bkaxb
-zaz1lVoxPMTxnh+AXjKK7jm4zF02j074JkTmpkEBp41CoCE/znDg98w9Je4JGVjX
-ygzYiLsjw5PY081U0Zj5ZU2kampw4hpl/mhiKf49z5s/nbDogZuBpUaL4E2e+oRA
-OYF3o+QCRf51tFtUUjKmcslgLIzcWpkjGkXJvPEkWb7dSqAZyoApvyXHmrHQ5WoI
-Rf8RzEjYPQLYoO98bU4hqrqjcqEPHvZKWQ1Jr8iNPnwQ7l827iScv8lRym1UaCXs
-uL7eT6EruneLEqqt7aGehTa7HVyWuD92OJ3Sw9mqD6FYISdBU6sTvq4j/QVZqBzo
-i7Pf1pyCFLHAmidHLpCCrqU7L/L/XomQM6eeAZa/A0WvsIyPxhrJ0yw/zpJZ0nNf
-EQaB+XYpf88Olv5h89ike3seo4OMERdRiZajHLj8eR/Wf99/UeI=
-=exAY
+iQIzBAEBCgAdFiEEUE/SH4pKdTgHhzvE4+amcNDIZBcFAmP1iicACgkQ4+amcNDI
+ZBc7dBAAmLr4sA4q2JK8iobNKBAGJAYgV7kG8iR3+Xe508igm1cPLeuL56ojrlPx
+yASk7WNxM1n/7xcS5m1U4up2yVUKLWvxTUHFUMYjF3HMV3P3bb3wpWQkp8Xz8EJB
+TFQrEBJXC+oPNyqDzvJZETWAw9dVJ3q4VBeZE8y65G9WqpvT9zs6Y8ppniVcxwX+
+AgRLlmNcn5YfzsA/dA8W29A/NgED+nWDByPVjlSiSvJZpfSC1r9rBxuS2/zGCkda
+D7Acd1ZFE5IPKgCtnbO7depE/LtS28WHxGilSn7pC5NmupJzyp6MSLJWg0Az8kQQ
+jUzVQVUJZ1eWxMtqJ4b7r7sRRL3TBZa6ZgunTrwydvqDbHr+A7Q9Sz78gGzBUAyT
+imbC5cEVLJ+HAOCdZm8mYgQTlKwmUYKljl9aTQRtatB91+2OirwEJ8y4chrPE4pK
+epRB+i3zSZ/0ICVD3BfsF9JJiRhcbQB4qYyQQUo4DmmNZLdHIdXbAVIrS/+OsU10
+EryKgvVpySa06hgWP8dcsgye+fzO1GMNybczIOPsU3eLJkjgT7F+TkmAXw/qRt/4
+HpiihOOncyEmQ/Qk6fOsvyncIBCzCBi+xfwjHJZo4aFpjVH7iFAvj3at+18XEmPj
+n/biZr1BsgTbFcdextND5rk7PlAy3/Ox/1z4w2kVNTP8CesuSBA=
+=LR4U
 -----END PGP SIGNATURE-----
