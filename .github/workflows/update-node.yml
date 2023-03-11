@@ -1,67 +1,68 @@
-
-name: Update Node
-
-on:
-  workflow_dispatch:
-  schedule:
-   - cron: '0 3 */7 * *'
-
-jobs:
-  update:
-    runs-on: ubuntu-latest
-    
-    steps:
-    - uses: actions/checkout@v3
-
-    - uses: ./.github/actions/prepare
-      with:
-        GPG_KEY: ${{ secrets.GPG_KEY }}
-
-    - name: Find Tag
-      id: tag
-      run: |
-        echo "TAG=$(curl https://api.github.com/repos/nodejs/node/releases/latest 2>/dev/null | jq -r ".tag_name")" >>$GITHUB_OUTPUT
-
-    - name: Download and Build
-      id: download
-      run: |
-        cd /tmp
-        wget -O "node.tar.xz" "https://nodejs.org/dist/${{ steps.tag.outputs.TAG }}/node-${{ steps.tag.outputs.TAG }}-linux-x64.tar.xz"
-        tar xf "node.tar.xz"
-        rm -vf "node.tar.xz"
-
-        mv "node-${{ steps.tag.outputs.TAG }}-linux-x64" nodejs-alexcoder04
-        cd nodejs-alexcoder04
-        mkdir -vp usr
-        mv -v bin include lib share usr/
-        mv -v CHANGELOG.md usr/share/doc/node/CHANGELOG.md
-        mv -v README.md usr/share/doc/node/README.md
-        mkdir -vp usr/share/licenses/node
-        mv -v LICENSE usr/share/licenses/node/LICENSE
-
-        mkdir -vp DEBIAN
-        cat >DEBIAN/control <<EOF
-        Package: nodejs-alexcoder04
-        Version: $(echo "${{ steps.tag.outputs.TAG }}" | tr -d "v")
-        Section: custom
-        Priority: optional
-        Architecture: amd64
-        Essential: no
-        Replaces: nodejs, libnode-dev
-        Conflicts: nodejs, libnode-dev
-        Maintainer: alexcoder04
-        Description: latest version of nodejs by alexcoder04
-        EOF
-        chmod 755 DEBIAN
-        cd ..
-        dpkg-deb --build nodejs-alexcoder04
-        mv nodejs-alexcoder04.deb "nodejs-alexcoder04_${{ steps.tag.outputs.TAG }}_amd64.deb"
-        echo "DEBFILE=/tmp/nodejs-alexcoder04_${{ steps.tag.outputs.TAG }}_amd64.deb" >>$GITHUB_OUTPUT
-
-    - uses: ./.github/actions/commit
-      with:
-        FILE: "${{ steps.download.outputs.DEBFILE }}"
-        GIT_EMAIL: ac04-dump@users.noreply.github.com
-        GIT_NAME: ac04-dump
-        MESSAGE: "nodejs ${{ steps.tag.outputs.TAG }}"
-
+#
+#name: Update Node
+#
+#on:
+#  workflow_dispatch:
+#  schedule:
+#   - cron: '0 3 */7 * *'
+#
+#jobs:
+#  update:
+#    runs-on: ubuntu-latest
+#    
+#    steps:
+#    - uses: actions/checkout@v3
+#
+#    - uses: ./.github/actions/prepare
+#      with:
+#        GPG_KEY: ${{ secrets.GPG_KEY }}
+#
+#    - name: Find Tag
+#      id: tag
+#      run: |
+#        echo "TAG=$(curl https://api.github.com/repos/nodejs/node/releases/latest 2>/dev/null | jq -r ".tag_name")" >>$GITHUB_OUTPUT
+#
+#    - name: Download and Build
+#      id: download
+#      run: |
+#        cd /tmp
+#        wget -O "node.tar.xz" "https://nodejs.org/dist/${{ steps.tag.outputs.TAG }}/node-${{ steps.tag.outputs.TAG }}-linux-x64.tar.xz"
+#        tar xf "node.tar.xz"
+#        rm -vf "node.tar.xz"
+#
+#        mv "node-${{ steps.tag.outputs.TAG }}-linux-x64" nodejs-alexcoder04
+#        cd nodejs-alexcoder04
+#        mkdir -vp usr
+#        mv -v bin include lib share usr/
+#        mv -v CHANGELOG.md usr/share/doc/node/CHANGELOG.md
+#        mv -v README.md usr/share/doc/node/README.md
+#        mkdir -vp usr/share/licenses/node
+#        mv -v LICENSE usr/share/licenses/node/LICENSE
+#
+#        mkdir -vp DEBIAN
+#        cat >DEBIAN/control <<EOF
+#        Package: nodejs-alexcoder04
+#        Version: $(echo "${{ steps.tag.outputs.TAG }}" | tr -d "v")
+#        Section: custom
+#        Priority: optional
+#        Architecture: amd64
+#        Essential: no
+#        Replaces: nodejs, libnode-dev
+#        Conflicts: nodejs, libnode-dev
+#        Maintainer: alexcoder04
+#        Description: latest version of nodejs by alexcoder04
+#        EOF
+#        chmod 755 DEBIAN
+#        cd ..
+#        dpkg-deb --build nodejs-alexcoder04
+#        mv nodejs-alexcoder04.deb "nodejs-alexcoder04_${{ steps.tag.outputs.TAG }}_amd64.deb"
+#        echo "DEBFILE=/tmp/nodejs-alexcoder04_${{ steps.tag.outputs.TAG }}_amd64.deb" >>$GITHUB_OUTPUT
+#
+#    - uses: ./.github/actions/commit
+#      with:
+#        FILE: "${{ steps.download.outputs.DEBFILE }}"
+#        GIT_EMAIL: ac04-dump@users.noreply.github.com
+#        GIT_NAME: ac04-dump
+#        MESSAGE: "nodejs ${{ steps.tag.outputs.TAG }}"
+#
+#

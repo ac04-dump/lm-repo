@@ -1,42 +1,43 @@
-
-name: Update Codium
-
-on:
-  workflow_dispatch:
-  schedule:
-   - cron: '0 3 */7 * *'
-
-env:
-  GIT_USERNAME: ac04-dump
-  GIT_EMAIL: alexcoder04@protonmail.com
-
-jobs:
-  update:
-    runs-on: ubuntu-latest
-    
-    steps:
-    - uses: actions/checkout@v3
-
-    - uses: ./.github/actions/prepare
-      with:
-        GPG_KEY: ${{ secrets.GPG_KEY }}
-
-    - name: Find vscodium Tag
-      id: tag
-      run: |
-        echo "TAG=$(curl https://api.github.com/repos/vscodium/vscodium/releases/latest 2>/dev/null | jq -r ".tag_name")" >>$GITHUB_OUTPUT
-
-    - name: Download vscodium
-      id: download
-      run: |
-        cd /tmp
-        wget "https://github.com/VSCodium/vscodium/releases/download/${{ steps.tag.outputs.TAG }}/codium_${{ steps.tag.outputs.TAG }}_amd64.deb"
-        echo "DEBFILE=/tmp/codium_${{ steps.tag.outputs.TAG }}_amd64.deb" >>$GITHUB_OUTPUT
-
-    - uses: ./.github/actions/commit
-      with:
-        FILE: "${{ steps.download.outputs.DEBFILE }}"
-        GIT_EMAIL: ac04-dump@users.noreply.github.com
-        GIT_NAME: ac04-dump
-        MESSAGE: "vscodium ${{ steps.tag.outputs.TAG }}"
-
+#
+#name: Update Codium
+#
+#on:
+#  workflow_dispatch:
+#  schedule:
+#   - cron: '0 3 */7 * *'
+#
+#env:
+#  GIT_USERNAME: ac04-dump
+#  GIT_EMAIL: alexcoder04@protonmail.com
+#
+#jobs:
+#  update:
+#    runs-on: ubuntu-latest
+#    
+#    steps:
+#    - uses: actions/checkout@v3
+#
+#    - uses: ./.github/actions/prepare
+#      with:
+#        GPG_KEY: ${{ secrets.GPG_KEY }}
+#
+#    - name: Find vscodium Tag
+#      id: tag
+#      run: |
+#        echo "TAG=$(curl https://api.github.com/repos/vscodium/vscodium/releases/latest 2>/dev/null | jq -r ".tag_name")" >>$GITHUB_OUTPUT
+#
+#    - name: Download vscodium
+#      id: download
+#      run: |
+#        cd /tmp
+#        wget "https://github.com/VSCodium/vscodium/releases/download/${{ steps.tag.outputs.TAG }}/codium_${{ steps.tag.outputs.TAG }}_amd64.deb"
+#        echo "DEBFILE=/tmp/codium_${{ steps.tag.outputs.TAG }}_amd64.deb" >>$GITHUB_OUTPUT
+#
+#    - uses: ./.github/actions/commit
+#      with:
+#        FILE: "${{ steps.download.outputs.DEBFILE }}"
+#        GIT_EMAIL: ac04-dump@users.noreply.github.com
+#        GIT_NAME: ac04-dump
+#        MESSAGE: "vscodium ${{ steps.tag.outputs.TAG }}"
+#
+#
